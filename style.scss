@@ -3,12 +3,12 @@
 body {
     background-image: url("abstract-antique-architecture-168442.jpg");
     background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
     height: 100%;
     margin: 0;
-     
-  
 }
+
 h1 {
     text-align: center;
     padding-top: 20px;
@@ -26,19 +26,17 @@ h1 {
     text-align: center !important;
 }
 
-
 .container-img-main {
     position: relative;
     text-align: center;
     -moz-box-shadow: 4px 6px 6px 3px rgba(0, 0, 0,0.5);
     -webkit-box-shadow: 4px 6px 6px 3px rgba(0, 0, 0, .5);
     box-shadow: 4px 6px 6px 3px rgba(0, 0, 0, .5);
+    img{
+        width:100%;
+    }
 }
   
-.container-img-main img {
-    width: 100%;
-  }
-
 .pin-right {
     position: absolute;
     top: 1px;
@@ -104,6 +102,7 @@ h1 {
     margin: 10px;
     cursor: pointer;
     font-weight: bold;
+    font-size: large;
     width: 117px;
     height: 40px;
     border-radius: 8px;
@@ -116,7 +115,7 @@ h1 {
     left: 50px;
     width: 5px;
     height: 5px;
-    background: rgba(19, 185, 4, 0.863);
+    background: rgba(99, 113, 247, 0.863);
     opacity: 0;
     border-radius: 100%;
     transform: scale(1,1) translate(-50%);
@@ -151,6 +150,15 @@ button:focus:not(:active)::after {
 .fa-minus-circle {
     color: red;
 }
+//icon animation//
+.fa-minus-circle, .fa-plus-circle {
+    display: inline-block;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    font-size: 20px;
+  }
 @-webkit-keyframes pulse {
     25% {
       -webkit-transform: scale(1.2);
@@ -175,14 +183,6 @@ button:focus:not(:active)::after {
     }
   }
   
-  .fa-minus-circle, .fa-plus-circle {
-    display: inline-block;
-    -webkit-transform: translateZ(0);
-    -ms-transform: translateZ(0);
-    transform: translateZ(0);
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  }
-  
   .btn-press:hover .fa-minus-circle, .btn-press:hover .fa-plus-circle {
     -webkit-animation-name: pulse;
     animation-name: pulse;
@@ -203,6 +203,16 @@ button:focus:not(:active)::after {
     top:3px;
     text-align: center;
     margin-left: 20px;
+//grow on hover//
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.8s;
+    transition-duration: 0.8s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
 
 //transition card//
     animation-name: slideToRight;
@@ -221,18 +231,7 @@ button:focus:not(:active)::after {
         100% {transform: translateX(0%);}
     }
 }
-//grow on hover//
-.taskcard {
-    display: inline-block;
-    vertical-align: middle;
-    -webkit-transform: perspective(1px) translateZ(0);
-    transform: perspective(1px) translateZ(0);
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-    -webkit-transition-duration: 0.8s;
-    transition-duration: 0.8s;
-    -webkit-transition-property: transform;
-    transition-property: transform;
-  }
+
   .taskcard:hover, .taskcard:focus, .taskcard:active {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
@@ -305,7 +304,45 @@ button:focus:not(:active)::after {
     z-index: 1;
     top: -50px;
     left: 850px;
+    //clock animation//
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 }
+
+@-webkit-keyframes hvr-buzz {
+    50% {
+      -webkit-transform: translateX(3px) rotate(2deg);
+      transform: translateX(3px) rotate(2deg);
+    }
+    100% {
+      -webkit-transform: translateX(-3px) rotate(-2deg);
+      transform: translateX(-3px) rotate(-2deg);
+    }
+  }
+  @keyframes hvr-buzz {
+    50% {
+      -webkit-transform: translateX(3px) rotate(2deg);
+      transform: translateX(3px) rotate(2deg);
+    }
+    100% {
+      -webkit-transform: translateX(-3px) rotate(-2deg);
+      transform: translateX(-3px) rotate(-2deg);
+    }
+  }
+  
+  #Clock:hover, #Clock:focus, #Clock:active {
+    -webkit-animation-name: hvr-buzz;
+    animation-name: hvr-buzz;
+    -webkit-animation-duration: 0.15s;
+    animation-duration: 0.15s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+  }
 
 
 @media only screen and (max-width:640px) {
@@ -314,16 +351,19 @@ button:focus:not(:active)::after {
       text-align: center;
     }
   }
-  @media only screen and (min-width:768px) {
-    /* For mobile phones: */
-    body{
-      background-repeat: repeat;
-    }
-  }
-  @media only screen and (max-width:1194px) {
+
+@media only screen and (max-width:1000px) {
     /* For mobile phones: */
     div #Clock{
       display: none;
+    }
+  }
+  
+  @media only screen and (max-width:1188px) {
+    /* For mobile phones: */
+    div #Clock{
+        top: -50px;
+        left: 700px;
     }
   }
 
